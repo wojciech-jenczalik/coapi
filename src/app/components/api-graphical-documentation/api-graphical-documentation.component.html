@@ -1,1 +1,8 @@
-<p>api-graphical-documentation works!</p>
+<div class="row" *ngIf="(coapi$ | async)">
+  ##########KOCHAM WIKUSIE
+  <div>
+    {{(coapi$ | async).coapi}}
+    {{(coapi$ | async).info}}
+    {{(coapi$ | async).paths}}
+  </div>
+</div>

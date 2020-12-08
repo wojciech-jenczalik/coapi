@@ -7,10 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ApiDefinitionTextAreaComponent } from './components/api-definition-text-area/api-definition-text-area.component';
-import {reducer} from './state/specification.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { SpecificationEffects } from './state/specification.effects';
 import { ApiGraphicalDocumentationComponent } from './components/api-graphical-documentation/api-graphical-documentation.component';
+import {reducers} from './specification.reducers';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { ApiGraphicalDocumentationComponent } from './components/api-graphical-d
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    StoreModule.forRoot({ specification: reducer }),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([ SpecificationEffects ])
   ],
   providers: [],
