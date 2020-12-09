@@ -1,8 +1,18 @@
-<div class="col-lg-7" *ngIf="(coapi$ | async)">
-  ##########KOCHAM WIKUSIE
-  <div>
-    {{(coapi$ | async).coapi}}
-    {{(coapi$ | async).info}}
-    {{(coapi$ | async).paths}}
+<div *ngIf="(coapi$ | async)">
+  <div *ngFor="let path of (coapi$ | async).paths">
+    <div *ngIf="path.get">
+      GET ## {{path.url}} ##{{path.get.description}}
+    </div>
+    <div *ngIf="path.put">
+      PUT ## {{path.url}} ##{{path.put.description}}
+    </div>
+    <div *ngIf="path.post">
+      POST ## {{path.url}} ##{{path.post.description}}
+    </div>
+    <div *ngIf="path.delete">
+      DELETE ## {{path.url}} ##{{path.delete.description}}
+    </div>
   </div>
 </div>
+
+
