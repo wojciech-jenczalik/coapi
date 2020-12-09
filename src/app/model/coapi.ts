@@ -29,22 +29,32 @@ export interface Coapi {
       url: string
       description?: string
       get?: {
+        produces?: Produces
+        parameters?: Parameters
         description?: string
         etag?: boolean
         observable?: boolean
         responses?: Responses
       }
       put?: {
+        consumes?: Consumes
+        produces?: Produces
+        parameters?: Parameters
         description?: string
         payload?: Payload
         responses?: Responses
       }
       post?: {
+        consumes?: Consumes
+        produces?: Produces
+        parameters?: Parameters
         description?: string
         payload?: Payload
         responses?: Responses
       }
       delete?: {
+        produces?: Produces
+        parameters?: Parameters
         description?: string
         responses?: Responses
       }
@@ -68,4 +78,17 @@ export type Responses = {
   code?: string
   description?: string
   content?: Content
+}[];
+export type Consumes = {
+  type: string
+}[];
+export type Produces = {
+  type: string
+}[];
+export type Parameters = {
+  name: string,
+  in: string,
+  description?: string,
+  required?: string,
+  type?: string,
 }[];
