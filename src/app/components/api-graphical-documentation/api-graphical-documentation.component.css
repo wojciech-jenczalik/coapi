@@ -1,0 +1,58 @@
+.method-container {
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+.method-header-container {
+  margin-top: 4px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 1px solid;
+}
+
+.http-method {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  width: 7%;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.url {
+  margin-left: 1%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.method-description {
+  margin-left: 1%;
+  text-align: center;
+}
+
+.method-parameters {
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid;
+}
+
+.param-required-marker {
+  display: inline-block;
+  position: relative;
+  color: red;
+}
+
+.param-required-text {
+  display: inline-block;
+  position: relative;
+  color: red;
+  font-size: x-small;
+  vertical-align: top;
+}
+
+.param-type {
+  color: grey;
+  font-style: italic;
+}

@@ -1,18 +1,79 @@
-<div *ngIf="(coapi$ | async)">
-  <div *ngFor="let path of (coapi$ | async).paths">
-    <div *ngIf="path.get">
-      GET ## {{path.url}} ##{{path.get.description}}
-    </div>
-    <div *ngIf="path.put">
-      PUT ## {{path.url}} ##{{path.put.description}}
-    </div>
-    <div *ngIf="path.post">
-      POST ## {{path.url}} ##{{path.post.description}}
-    </div>
-    <div *ngIf="path.delete">
-      DELETE ## {{path.url}} ##{{path.delete.description}}
+<div class="container-fluid m-1">
+  <div *ngIf="(coapi$ | async)">
+    <div *ngFor="let path of (coapi$ | async).paths">
+<!--      <div class="row col-11 method-container" *ngIf="path.get">-->
+<!--        <div class="row col-12 method-header-container" style="background-color: #61AFFE1A; border-color: #61AFFE">-->
+<!--          <div class="http-method" style="background-color: #61AFFE;">GET</div>-->
+<!--          <div class="url">{{path.url}}</div>-->
+<!--          <div class="method-description">{{path.get.description}}</div>-->
+<!--        </div>-->
+<!--        <div class="row col-12 method-parameters" style="border-color: #61AFFE">-->
+<!--          Parameters-->
+<!--        </div>-->
+<!--        <div class="table">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th scope="col">Name</th>-->
+<!--            <th scope="col">Description</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <tr *ngFor="let param of path.get.parameters">-->
+<!--            <th scope="row">-->
+<!--              {{param.name}}-->
+<!--              <div class="param-required-marker" *ngIf="param.required == true">-->
+<!--                *-->
+<!--                <div class="param-required-text">-->
+<!--                  required-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="param-type">-->
+<!--                ({{param.type}})-->
+<!--              </div>-->
+<!--            </th>-->
+<!--            <td>{{param.description}}</td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="row col-11 method-container" *ngIf="path.put">
+        <div class="row col-12 method-header-container" style="background-color: #49CC901A; border-color: #49CC90">
+          <div class="http-method" style="background-color: #49CC90;">PUT</div>
+          <div class="url">{{path.url}}</div>
+          <div class="method-description">{{path.put.description}}</div>
+        </div>
+        <div class="row col-12 method-parameters" style="border-color: #49CC90">
+          Parameters
+        </div>
+        <div class="table">
+          <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let param of path.put.parameters">
+            <th scope="row">
+              {{param.name}}
+              <div class="param-required-marker" *ngIf="param.required == true">
+                *
+                <div class="param-required-text">
+                  required
+                </div>
+              </div>
+            </th>
+            <td>{{param.description}}</td>
+          </tr>
+          </tbody>
+        </div>
+      </div>
+<!--      <div *ngIf="path.post">-->
+<!--        POST ## {{path.url}} ##{{path.post.description}}-->
+<!--      </div>-->
+<!--      <div *ngIf="path.delete">-->
+<!--        DELETE ## {{path.url}} ##{{path.delete.description}}-->
+<!--      </div>-->
     </div>
   </div>
 </div>
-
-
