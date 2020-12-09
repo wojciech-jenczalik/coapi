@@ -52,6 +52,8 @@ paths:
           type: string
         - name: state
           in: body
+          description: "Desired state of a lamp"
+          type: integer
       description: Turns on/off the lamp.
       payload:
         description: Contains desired state of the lamp.
