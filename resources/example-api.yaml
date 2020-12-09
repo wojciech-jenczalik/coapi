@@ -33,7 +33,7 @@ paths:
         - name: lampId
           in: path
           description: "ID of a lamp"
-          required: true,
+          required: true
           type: string
       description: "Get state of given lamp."
       observable: true
@@ -48,10 +48,10 @@ paths:
         - name: lampId
           in: path
           description: "ID of a lamp"
-          required: true,
-          type: string,
+          required: true
+          type: string
         - name: state
-          in: body,
+          in: body
       description: Turns on/off the lamp.
       payload:
         description: Contains desired state of the lamp.
