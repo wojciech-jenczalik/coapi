@@ -1,0 +1,85 @@
+coapi: 1.0.0
+servers:
+  - url: iotdevices.com
+    description: "Production server of IOT devices"
+    port: 5356
+info:
+  title: "Example IoT API"
+  description: "Example for PDI2. API contains ... some IoT endpoints representing hardware."
+  contact:
+    name: "Wojciech Jenczalik"
+    url: example.homepage.pl
+    email: jenczalik@pw.edu.pl
+  license:
+    name: MIT License
+    url: mit.edu/license.md
+  version: 1.0-SNAPSHOT
+  coapVersion: "1"
+paths:
+  - url: /lamps
+    description: "Lamps endpoint - allowing to get current state of lamps."
+    get:
+      produces:
+        - 'application/json'
+        - 'application/xml'
+      description: "Get state of all lamps."
+  - url: /lamps/{lampId}
+    description: "Endpoint allowing to turn on/off given lamp or get its current state."
+    get:
+      produces:
+        - 'application/json'
+        - 'application/xml'
+      parameters:
+        - name: lampId
+          in: path
+          description: "ID of a lamp"
+          required: true,
+          type: string
+      description: "Get state of given lamp."
+      observable: true
+      etag: true
+    put:
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+        - 'application/xml'
+      parameters:
+        - name: lampId
+          in: path
+          description: "ID of a lamp"
+          required: true,
+          type: string,
+        - name: state
+          in: body,
+      description: Turns on/off the lamp.
+      payload:
+        description: Contains desired state of the lamp.
+        content:
+          - format: "application/json"
+            schema: JSON Schema 2019-09
+            examples:
+              - description: Example of turning the lamp on by JSON request.
+                value: "{state: 1}"
+          - format: "text/plain;"
+            examples:
+              - description: Example of turning the lamp off by YAML request.
+                value: "state: 0"
+        required: true
+      responses:
+        - code: default
+          description: A default response.
+          content:
+            - format: "application/json"
+              schema: JSON Schema 2019-09
+              examples:
+                - value: "{state: 1}"
+        - code: "4.04"
+          description: Not found.
+          content:
+            - format: "text/plain;"
+              schema: none
+              examples:
+                - value: "Unable to find a lamp of given ID."
+    delete:
+      description: Removes given lamp from an API.
