@@ -3,7 +3,7 @@
     <form class="specificationForm col-5">
       <pre>
         <code class="specificationField" contenteditable="true" #specificationInput [highlight]="mock"></code>
-          <button type="button" class="btn btn-primary float-right test"
+          <button type="button" class="btn btn-primary float-right submitButton"
                   (click)="submitSpec(specificationInput.innerText)"
                   routerLinkActive="current-selection"
                   routerLink="/documentation/{{generateUuid()}}">Submit

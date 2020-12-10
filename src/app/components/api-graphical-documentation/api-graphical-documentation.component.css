@@ -4,6 +4,7 @@
 }
 
 .method-header-container {
+  padding: 6px;
   margin-top: 4px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
@@ -53,6 +54,10 @@
 }
 
 .param-type {
+  font-size: smaller;
+}
+
+.param-in {
   color: grey;
   font-style: italic;
 }

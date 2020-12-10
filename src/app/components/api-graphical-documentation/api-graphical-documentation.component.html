@@ -27,8 +27,8 @@
 <!--                  required-->
 <!--                </div>-->
 <!--              </div>-->
-<!--              <div class="param-type">-->
-<!--                ({{param.type}})-->
+<!--              <div class="param-in">-->
+<!--                ({{param.in}})-->
 <!--              </div>-->
 <!--            </th>-->
 <!--            <td>{{param.description}}</td>-->
@@ -37,7 +37,7 @@
 <!--        </div>-->
 <!--      </div>-->
       <div class="row col-12 method-container" *ngIf="path.put">
-        <div class="row col-12 method-header-container p-3" style="background-color: #49CC901A; border-color: #49CC90">
+        <div class="row col-12 method-header-container" style="background-color: #49CC901A; border-color: #49CC90">
           <div class="http-method" style="background-color: #49CC90;">PUT</div>
           <div class="url">{{path.url}}</div>
           <div class="method-description">{{path.put.description}}</div>
@@ -45,7 +45,7 @@
         <div class="row col-12 method-parameters" style="border-color: #49CC90">
           Parameters
         </div>
-        <div class="table">
+        <div class="table" *ngIf="path.put.parameters.length > 0">
           <thead>
           <tr>
             <th scope="col">Name</th>
@@ -61,6 +61,12 @@
                 <div class="param-required-text">
                   required
                 </div>
+              </div>
+              <div class="param-type">
+                {{param.type}}
+              </div>
+              <div class="param-in">
+                ({{param.in}})
               </div>
             </th>
             <td>{{param.description}}</td>
