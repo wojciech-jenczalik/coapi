@@ -1,6 +1,6 @@
-<div class="container-fluid m-1">
-  <div *ngIf="(coapi$ | async)">
-    <div *ngFor="let path of (coapi$ | async).paths">
+<div class="container-fluid">
+  <ng-container *ngIf="(coapi$ | async)">
+    <ng-container *ngFor="let path of (coapi$ | async).paths">
 <!--      <div class="row col-11 method-container" *ngIf="path.get">-->
 <!--        <div class="row col-12 method-header-container" style="background-color: #61AFFE1A; border-color: #61AFFE">-->
 <!--          <div class="http-method" style="background-color: #61AFFE;">GET</div>-->
@@ -36,8 +36,8 @@
 <!--          </tbody>-->
 <!--        </div>-->
 <!--      </div>-->
-      <div class="row col-11 method-container" *ngIf="path.put">
-        <div class="row col-12 method-header-container" style="background-color: #49CC901A; border-color: #49CC90">
+      <div class="row col-12 method-container" *ngIf="path.put">
+        <div class="row col-12 method-header-container p-3" style="background-color: #49CC901A; border-color: #49CC90">
           <div class="http-method" style="background-color: #49CC90;">PUT</div>
           <div class="url">{{path.url}}</div>
           <div class="method-description">{{path.put.description}}</div>
@@ -74,6 +74,6 @@
 <!--      <div *ngIf="path.delete">-->
 <!--        DELETE ## {{path.url}} ##{{path.delete.description}}-->
 <!--      </div>-->
-    </div>
-  </div>
+    </ng-container>
+  </ng-container>
 </div>

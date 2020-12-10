@@ -1,13 +1,16 @@
-<div class="container-fluid m-3">
+<div class="container-fluid">
   <div class="row">
     <form class="specificationForm col-5">
-      <button type="button" class="btn btn-primary float-right" (click)="submitSpec(specificationInput.innerText)"
-              routerLinkActive="current-selection"
-              routerLink="/documentation/{{generateUuid()}}">Submit
-      </button>
-      <pre class="specificationField" contenteditable="true" #specificationInput><code [highlight]="mock"></code></pre>
+      <pre>
+        <code class="specificationField" contenteditable="true" #specificationInput [highlight]="mock"></code>
+          <button type="button" class="btn btn-primary float-right test"
+                  (click)="submitSpec(specificationInput.innerText)"
+                  routerLinkActive="current-selection"
+                  routerLink="/documentation/{{generateUuid()}}">Submit
+          </button>
+      </pre>
     </form>
-    <div class="col-7">
+    <div class="col-7 mt-3">
       <router-outlet></router-outlet>
     </div>
   </div>

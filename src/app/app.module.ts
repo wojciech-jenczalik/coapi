@@ -24,17 +24,16 @@ import {HIGHLIGHT_OPTIONS, HighlightModule} from 'ngx-highlightjs';
     AppRoutingModule,
     NgbModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([ SpecificationEffects ]),
+    EffectsModule.forRoot([SpecificationEffects]),
     HighlightModule,
   ],
   providers: [
     {
       provide: HIGHLIGHT_OPTIONS,
-      useValue: {
-        fullLibraryLoader: () => import('highlight.js'),
-      }
+      useValue: {}
     }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
