@@ -1,85 +1,128 @@
 <div class="container-fluid">
   <ng-container *ngIf="(coapi$ | async)">
     <ng-container *ngFor="let path of (coapi$ | async).paths">
-<!--      <div class="row col-11 method-container" *ngIf="path.get">-->
-<!--        <div class="row col-12 method-header-container" style="background-color: #61AFFE1A; border-color: #61AFFE">-->
-<!--          <div class="http-method" style="background-color: #61AFFE;">GET</div>-->
-<!--          <div class="url">{{path.url}}</div>-->
-<!--          <div class="method-description">{{path.get.description}}</div>-->
-<!--        </div>-->
-<!--        <div class="row col-12 method-parameters" style="border-color: #61AFFE">-->
-<!--          Parameters-->
-<!--        </div>-->
-<!--        <div class="table">-->
-<!--          <thead>-->
-<!--          <tr>-->
-<!--            <th scope="col">Name</th>-->
-<!--            <th scope="col">Description</th>-->
-<!--          </tr>-->
-<!--          </thead>-->
-<!--          <tbody>-->
-<!--          <tr *ngFor="let param of path.get.parameters">-->
-<!--            <th scope="row">-->
-<!--              {{param.name}}-->
-<!--              <div class="param-required-marker" *ngIf="param.required == true">-->
-<!--                *-->
-<!--                <div class="param-required-text">-->
-<!--                  required-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="param-in">-->
-<!--                ({{param.in}})-->
-<!--              </div>-->
-<!--            </th>-->
-<!--            <td>{{param.description}}</td>-->
-<!--          </tr>-->
-<!--          </tbody>-->
-<!--        </div>-->
-<!--      </div>-->
+      <!--      <div class="row col-11 method-container" *ngIf="path.get">-->
+      <!--        <div class="row col-12 method-header-container" style="background-color: #61AFFE1A; border-color: #61AFFE">-->
+      <!--          <div class="http-method" style="background-color: #61AFFE;">GET</div>-->
+      <!--          <div class="url">{{path.url}}</div>-->
+      <!--          <div class="method-description">{{path.get.description}}</div>-->
+      <!--        </div>-->
+      <!--        <div class="row col-12 method-parameters" style="border-color: #61AFFE">-->
+      <!--          Parameters-->
+      <!--        </div>-->
+      <!--        <div class="table">-->
+      <!--          <thead>-->
+      <!--          <tr>-->
+      <!--            <th scope="col">Name</th>-->
+      <!--            <th scope="col">Description</th>-->
+      <!--          </tr>-->
+      <!--          </thead>-->
+      <!--          <tbody>-->
+      <!--          <tr *ngFor="let param of path.get.parameters">-->
+      <!--            <th scope="row">-->
+      <!--              {{param.name}}-->
+      <!--              <div class="param-required-marker" *ngIf="param.required == true">-->
+      <!--                *-->
+      <!--                <div class="param-required-text">-->
+      <!--                  required-->
+      <!--                </div>-->
+      <!--              </div>-->
+      <!--              <div class="param-in">-->
+      <!--                ({{param.in}})-->
+      <!--              </div>-->
+      <!--            </th>-->
+      <!--            <td>{{param.description}}</td>-->
+      <!--          </tr>-->
+      <!--          </tbody>-->
+      <!--        </div>-->
+      <!--      </div>-->
       <div class="row col-12 method-container" *ngIf="path.put">
-        <div class="row col-12 method-header-container" style="background-color: #49CC901A; border-color: #49CC90">
+        <div class="row col-12 method-header-container p-3" style="background-color: #49CC901A; border-color: #49CC90">
           <div class="http-method" style="background-color: #49CC90;">PUT</div>
           <div class="url">{{path.url}}</div>
           <div class="method-description">{{path.put.description}}</div>
         </div>
-        <div class="row col-12 method-parameters" style="border-color: #49CC90">
+        <div class="row col-12 method-parameters-header p-3" style="border-color: #49CC90">
           Parameters
         </div>
-        <div class="table" *ngIf="path.put.parameters.length > 0">
-          <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let param of path.put.parameters">
-            <th scope="row">
-              {{param.name}}
-              <div class="param-required-marker" *ngIf="param.required == true">
-                *
-                <div class="param-required-text">
-                  required
+        <div class="row col-12 method-parameters-container" *ngIf="path.put.parameters.length > 0"
+             style="background-color: #49CC901A; border-color: #49CC90">
+          <div class="table">
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let param of path.put.parameters">
+              <th scope="row">
+                {{param.name}}
+                <div class="param-required-marker" *ngIf="param.required == true">
+                  *
+                  <div class="param-required-text">
+                    required
+                  </div>
                 </div>
-              </div>
-              <div class="param-type">
-                {{param.type}}
-              </div>
-              <div class="param-in">
-                ({{param.in}})
-              </div>
-            </th>
-            <td>{{param.description}}</td>
-          </tr>
-          </tbody>
+                <div class="param-type">
+                  {{param.type}}
+                </div>
+                <div class="param-in">
+                  ({{param.in}})
+                </div>
+              </th>
+              <td>{{param.description}}</td>
+            </tr>
+            </tbody>
+          </div>
+        </div>
+        <div class="row col-12 method-payload-header p-3" style="border-color: #49CC90">
+          Payload
+          <div class="payload-required-marker" *ngIf="path.put.payload.required == true">
+            *
+            <div class="payload-required-text">
+              required
+            </div>
+          </div>
+          <div class="payload-description">{{path.put.payload.description}}</div>
+        </div>
+        <div class="row col-12 method-payload-container" *ngIf="path.put.payload.content.length > 0"
+             style="background-color: #49CC901A; border-color: #49CC90">
+          <div class="table">
+            <thead>
+            <tr>
+              <th scope="col">Format</th>
+              <th scope="col">Examples</th>
+              <th scope="col">Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let content of path.put.payload.content">
+              <th scope="row">
+                {{content.format}}
+                <div class="schema">
+                  {{content.schema}}
+                </div>
+              </th>
+              <ng-container *ngFor="let example of content.examples">
+                <td>
+                  <code class="contentExample" [highlight]="example.value"></code>
+                </td>
+                <td>
+                  {{example.description}}
+                </td>
+              </ng-container>
+            </tr>
+            </tbody>
+          </div>
         </div>
       </div>
-<!--      <div *ngIf="path.post">-->
-<!--        POST ## {{path.url}} ##{{path.post.description}}-->
-<!--      </div>-->
-<!--      <div *ngIf="path.delete">-->
-<!--        DELETE ## {{path.url}} ##{{path.delete.description}}-->
-<!--      </div>-->
+      <!--      <div *ngIf="path.post">-->
+      <!--        POST ## {{path.url}} ##{{path.post.description}}-->
+      <!--      </div>-->
+      <!--      <div *ngIf="path.delete">-->
+      <!--        DELETE ## {{path.url}} ##{{path.delete.description}}-->
+      <!--      </div>-->
     </ng-container>
   </ng-container>
 </div>

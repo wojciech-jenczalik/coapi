@@ -68,7 +68,7 @@ export type Content = {
     description?: string
     value?: string
   }[]
-};
+}[];
 export interface Payload {
   description?: string;
   content?: Content;
