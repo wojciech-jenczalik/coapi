@@ -102,3 +102,16 @@
   font-size: x-small;
   vertical-align: top;
 }
+
+.method-responses-header {
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid;
+}
+
+.method-responses-container {
+  text-align: left;
+  border: 1px solid;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
