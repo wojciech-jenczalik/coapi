@@ -1,82 +1,131 @@
 <div class="container-fluid">
-<!--  61AFFE-->
   <ng-container *ngIf="(coapi$ | async)">
     <ng-container *ngFor="let path of (coapi$ | async).paths">
-      <!--      <div class="row col-11 method-container" *ngIf="path.get">-->
-      <!--        <div class="row col-12 method-header-container" style="background-color: #61AFFE1A; border-color: #61AFFE">-->
-      <!--          <div class="http-method" style="background-color: #61AFFE;">GET</div>-->
-      <!--          <div class="url">{{path.url}}</div>-->
-      <!--          <div class="method-description">{{path.get.description}}</div>-->
-      <!--        </div>-->
-      <!--        <div class="row col-12 method-parameters" style="border-color: #61AFFE">-->
-      <!--          Parameters-->
-      <!--        </div>-->
-      <!--        <div class="table">-->
-      <!--          <thead>-->
-      <!--          <tr>-->
-      <!--            <th scope="col">Name</th>-->
-      <!--            <th scope="col">Description</th>-->
-      <!--          </tr>-->
-      <!--          </thead>-->
-      <!--          <tbody>-->
-      <!--          <tr *ngFor="let param of path.get.parameters">-->
-      <!--            <th scope="row">-->
-      <!--              {{param.name}}-->
-      <!--              <div class="param-required-marker" *ngIf="param.required == true">-->
-      <!--                *-->
-      <!--                <div class="param-required-text">-->
-      <!--                  required-->
-      <!--                </div>-->
-      <!--              </div>-->
-      <!--              <div class="param-in">-->
-      <!--                ({{param.in}})-->
-      <!--              </div>-->
-      <!--            </th>-->
-      <!--            <td>{{param.description}}</td>-->
-      <!--          </tr>-->
-      <!--          </tbody>-->
-      <!--        </div>-->
-      <!--      </div>-->
+      <div class="row col-12 method-container" *ngIf="path.get">
+        <div class="row col-12 method-header-container p-3" style="background-color: #61AFFE1A; border-color: #61AFFE">
+          <div class="http-method" style="background-color: #61AFFE;">GET</div>
+          <div class="url">{{path.url}}</div>
+          <div class="method-description">{{path.get.description}}</div>
+        </div>
+        <ng-container *ngIf="path.get.parameters != null && path.get.parameters.length > 0">
+          <div class="row col-12 method-parameters-header p-3" style="border-color: #61AFFE">
+            Parameters
+          </div>
+          <div class="row col-12 method-parameters-container"
+               style="background-color: #61AFFE1A; border-color: #61AFFE">
+            <div class="table">
+              <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let param of path.get.parameters">
+                <th scope="row">
+                  {{param.name}}
+                  <div class="param-required-marker" *ngIf="param.required == true">
+                    *
+                    <div class="param-required-text">
+                      required
+                    </div>
+                  </div>
+                  <div class="param-type">
+                    {{param.type}}
+                  </div>
+                  <div class="param-in">
+                    ({{param.in}})
+                  </div>
+                </th>
+                <td>{{param.description}}</td>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="path.get.responses != null && path.get.responses.length > 0">
+          <div class="row col-12 method-responses-header p-3" style="border-color: #61AFFE">
+            Responses
+          </div>
+          <div class="row col-12 method-responses-container" style="background-color: #61AFFE1A; border-color: #61AFFE">
+            <div class="table">
+              <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Format</th>
+                <th scope="col">Examples</th>
+                <th scope="col">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let response of path.get.responses">
+                <th scope="row">
+                  {{response.code}}
+                </th>
+                <ng-container *ngFor="let content of response.content">
+                  <td>
+                    {{content.format}}
+                    <div class="schema">
+                      {{content.schema}}
+                    </div>
+                  </td>
+                  <ng-container *ngFor="let example of content.examples">
+                    <td>
+                      <code class="contentExample" [highlight]="example.value"></code>
+                    </td>
+                    <td>
+                      {{example.description}}
+                    </td>
+                  </ng-container>
+                </ng-container>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </ng-container>
+      </div>
       <div class="row col-12 method-container" *ngIf="path.put">
         <div class="row col-12 method-header-container p-3" style="background-color: #49CC901A; border-color: #49CC90">
           <div class="http-method" style="background-color: #49CC90;">PUT</div>
           <div class="url">{{path.url}}</div>
           <div class="method-description">{{path.put.description}}</div>
         </div>
-        <div class="row col-12 method-parameters-header p-3" style="border-color: #49CC90">
-          Parameters
-        </div>
-        <div class="row col-12 method-parameters-container" *ngIf="path.put.parameters.length > 0"
-             style="background-color: #49CC901A; border-color: #49CC90">
-          <div class="table">
-            <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let param of path.put.parameters">
-              <th scope="row">
-                {{param.name}}
-                <div class="param-required-marker" *ngIf="param.required == true">
-                  *
-                  <div class="param-required-text">
-                    required
-                  </div>
-                </div>
-                <div class="param-type">
-                  {{param.type}}
-                </div>
-                <div class="param-in">
-                  ({{param.in}})
-                </div>
-              </th>
-              <td>{{param.description}}</td>
-            </tr>
-            </tbody>
+        <ng-container *ngIf="path.put.parameters != null && path.put.parameters.length > 0">
+          <div class="row col-12 method-parameters-header p-3" style="border-color: #49CC90">
+            Parameters
           </div>
-        </div>
+          <div class="row col-12 method-parameters-container"
+               style="background-color: #49CC901A; border-color: #49CC90">
+            <div class="table">
+              <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let param of path.put.parameters">
+                <th scope="row">
+                  {{param.name}}
+                  <div class="param-required-marker" *ngIf="param.required == true">
+                    *
+                    <div class="param-required-text">
+                      required
+                    </div>
+                  </div>
+                  <div class="param-type">
+                    {{param.type}}
+                  </div>
+                  <div class="param-in">
+                    ({{param.in}})
+                  </div>
+                </th>
+                <td>{{param.description}}</td>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </ng-container>
         <div class="row col-12 method-payload-header p-3" style="border-color: #49CC90">
           Payload
           <div class="payload-required-marker" *ngIf="path.put.payload.required == true">
@@ -117,43 +166,46 @@
             </tbody>
           </div>
         </div>
-        <div class="row col-12 method-responses-header p-3" style="border-color: #49CC90" *ngIf="path.put.responses.length > 0">
-          Responses
-        </div>
-        <div class="row col-12 method-responses-container" style="background-color: #49CC901A; border-color: #49CC90">
-          <div class="table">
-            <thead>
-            <tr>
-              <th scope="col">Code</th>
-              <th scope="col">Format</th>
-              <th scope="col">Examples</th>
-              <th scope="col">Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let response of path.put.responses">
-              <th scope="row">
-                {{response.code}}
-              </th>
-              <ng-container *ngFor="let content of response.content">
-                <td>
-                  <div class="schema">
-                    {{content.schema}}
-                  </div>
-                </td>
-                <ng-container *ngFor="let example of content.examples">
-                  <td>
-                    <code class="contentExample" [highlight]="example.value"></code>
-                  </td>
-                  <td>
-                    {{example.description}}
-                  </td>
-                </ng-container>
-              </ng-container>
-            </tr>
-            </tbody>
+        <ng-container *ngIf="path.put.responses != null && path.put.responses.length > 0">
+          <div class="row col-12 method-responses-header p-3" style="border-color: #49CC90">
+            Responses
           </div>
-        </div>
+          <div class="row col-12 method-responses-container" style="background-color: #49CC901A; border-color: #49CC90">
+            <div class="table">
+              <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Format</th>
+                <th scope="col">Examples</th>
+                <th scope="col">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let response of path.put.responses">
+                <th scope="row">
+                  {{response.code}}
+                </th>
+                <ng-container *ngFor="let content of response.content">
+                  <td>
+                    {{content.format}}
+                    <div class="schema">
+                      {{content.schema}}
+                    </div>
+                  </td>
+                  <ng-container *ngFor="let example of content.examples">
+                    <td>
+                      <code class="contentExample" [highlight]="example.value"></code>
+                    </td>
+                    <td>
+                      {{example.description}}
+                    </td>
+                  </ng-container>
+                </ng-container>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </ng-container>
       </div>
       <div class="row col-12 method-container" *ngIf="path.post">
         <div class="row col-12 method-header-container p-3" style="background-color: #FCA1301A; border-color: #FCA130">
@@ -161,40 +213,42 @@
           <div class="url">{{path.url}}</div>
           <div class="method-description">{{path.post.description}}</div>
         </div>
-        <div class="row col-12 method-parameters-header p-3" style="border-color: #FCA130">
-          Parameters
-        </div>
-        <div class="row col-12 method-parameters-container" *ngIf="path.post.parameters.length > 0"
-             style="background-color: #FCA1301A; border-color: #FCA130">
-          <div class="table">
-            <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let param of path.post.parameters">
-              <th scope="row">
-                {{param.name}}
-                <div class="param-required-marker" *ngIf="param.required == true">
-                  *
-                  <div class="param-required-text">
-                    required
-                  </div>
-                </div>
-                <div class="param-type">
-                  {{param.type}}
-                </div>
-                <div class="param-in">
-                  ({{param.in}})
-                </div>
-              </th>
-              <td>{{param.description}}</td>
-            </tr>
-            </tbody>
+        <ng-container *ngIf="path.get.parameters != null && path.get.parameters.length > 0">
+          <div class="row col-12 method-parameters-header p-3" style="border-color: #FCA130">
+            Parameters
           </div>
-        </div>
+          <div class="row col-12 method-parameters-container"
+               style="background-color: #FCA1301A; border-color: #FCA130">
+            <div class="table">
+              <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let param of path.post.parameters">
+                <th scope="row">
+                  {{param.name}}
+                  <div class="param-required-marker" *ngIf="param.required == true">
+                    *
+                    <div class="param-required-text">
+                      required
+                    </div>
+                  </div>
+                  <div class="param-type">
+                    {{param.type}}
+                  </div>
+                  <div class="param-in">
+                    ({{param.in}})
+                  </div>
+                </th>
+                <td>{{param.description}}</td>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </ng-container>
         <div class="row col-12 method-payload-header p-3" style="border-color: #FCA130">
           Payload
           <div class="payload-required-marker" *ngIf="path.post.payload.required == true">
@@ -235,47 +289,130 @@
             </tbody>
           </div>
         </div>
-        <div class="row col-12 method-responses-header p-3" style="border-color: #FCA130" *ngIf="path.post.responses.length > 0">
-          Responses
-        </div>
-        <div class="row col-12 method-responses-container" style="background-color: #FCA1301A; border-color: #FCA130">
-          <div class="table">
-            <thead>
-            <tr>
-              <th scope="col">Code</th>
-              <th scope="col">Format</th>
-              <th scope="col">Examples</th>
-              <th scope="col">Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let response of path.post.responses">
-              <th scope="row">
-                {{response.code}}
-              </th>
-              <ng-container *ngFor="let content of response.content">
-                <td>
-                  <div class="schema">
-                    {{content.schema}}
-                  </div>
-                </td>
-                <ng-container *ngFor="let example of content.examples">
-                  <td>
-                    <code class="contentExample" [highlight]="example.value"></code>
-                  </td>
-                  <td>
-                    {{example.description}}
-                  </td>
-                </ng-container>
-              </ng-container>
-            </tr>
-            </tbody>
+        <ng-container *ngIf="path.post.responses != null && path.post.responses.length > 0">
+          <div class="row col-12 method-responses-header p-3" style="border-color: #FCA130">
+            Responses
           </div>
-        </div>
+          <div class="row col-12 method-responses-container" style="background-color: #FCA1301A; border-color: #FCA130">
+            <div class="table">
+              <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Format</th>
+                <th scope="col">Examples</th>
+                <th scope="col">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let response of path.post.responses">
+                <th scope="row">
+                  {{response.code}}
+                </th>
+                <ng-container *ngFor="let content of response.content">
+                  <td>
+                    {{content.format}}
+                    <div class="schema">
+                      {{content.schema}}
+                    </div>
+                  </td>
+                  <ng-container *ngFor="let example of content.examples">
+                    <td>
+                      <code class="contentExample" [highlight]="example.value"></code>
+                    </td>
+                    <td>
+                      {{example.description}}
+                    </td>
+                  </ng-container>
+                </ng-container>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </ng-container>
       </div>
-      <!--      <div *ngIf="path.delete">-->
-      <!--        DELETE ## {{path.url}} ##{{path.delete.description}}-->
-      <!--      </div>-->
+      <div class="row col-12 method-container" *ngIf="path.delete">
+        <div class="row col-12 method-header-container p-3" style="background-color: #F93E3E1A; border-color: #F93E3E">
+          <div class="http-method" style="background-color: #F93E3E;">DELETE</div>
+          <div class="url">{{path.url}}</div>
+          <div class="method-description">{{path.delete.description}}</div>
+        </div>
+        <ng-container *ngIf="path.delete.parameters != null && path.delete.parameters.length > 0">
+          <div class="row col-12 method-parameters-header p-3" style="border-color: #F93E3E">
+            Parameters
+          </div>
+          <div class="row col-12 method-parameters-container"
+               style="background-color: #F93E3E1A; border-color: #F93E3E">
+            <div class="table">
+              <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let param of path.delete.parameters">
+                <th scope="row">
+                  {{param.name}}
+                  <div class="param-required-marker" *ngIf="param.required == true">
+                    *
+                    <div class="param-required-text">
+                      required
+                    </div>
+                  </div>
+                  <div class="param-type">
+                    {{param.type}}
+                  </div>
+                  <div class="param-in">
+                    ({{param.in}})
+                  </div>
+                </th>
+                <td>{{param.description}}</td>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="path.delete.responses != null && path.delete.responses.length > 0">
+          <div class="row col-12 method-responses-header p-3" style="border-color: #F93E3E">
+            Responses
+          </div>
+          <div class="row col-12 method-responses-container" style="background-color: #F93E3E1A; border-color: #F93E3E">
+            <div class="table">
+              <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Format</th>
+                <th scope="col">Examples</th>
+                <th scope="col">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let response of path.delete.responses">
+                <th scope="row">
+                  {{response.code}}
+                </th>
+                <ng-container *ngFor="let content of response.content">
+                  <td>
+                    {{content.format}}
+                    <div class="schema">
+                      {{content.schema}}
+                    </div>
+                  </td>
+                  <ng-container *ngFor="let example of content.examples">
+                    <td>
+                      <code class="contentExample" [highlight]="example.value"></code>
+                    </td>
+                    <td>
+                      {{example.description}}
+                    </td>
+                  </ng-container>
+                </ng-container>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </ng-container>
   </ng-container>
 </div>
