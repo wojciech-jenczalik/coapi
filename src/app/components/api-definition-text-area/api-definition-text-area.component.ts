@@ -11,6 +11,8 @@ import {v4 as uuidv4} from 'uuid';
 })
 export class ApiDefinitionTextAreaComponent implements OnInit, OnDestroy {
 
+  redirectUuid = '';
+
   constructor(private readonly store: Store<SpecificationState>) {
   }
 
@@ -54,6 +56,24 @@ export class ApiDefinitionTextAreaComponent implements OnInit, OnDestroy {
     "      description: \"Get state of given lamp.\"\n" +
     "      observable: true\n" +
     "      etag: true\n" +
+    "      responses:\n" +
+    "        - code: default\n" +
+    "          description: A default response.\n" +
+    "          content:\n" +
+    "            - format: \"application/json\"\n" +
+    "              schema: JSON Schema 2019-09\n" +
+    "              examples:\n" +
+    "                - value: |\n" +
+    "                    {\n" +
+    "                     \"state\": 1\n" +
+    "                    }\n" +
+    "        - code: \"4.04\"\n" +
+    "          description: Not found.\n" +
+    "          content:\n" +
+    "            - format: \"text/plain;\"\n" +
+    "              schema: none\n" +
+    "              examples:\n" +
+    "                - value: \"Unable to find a lamp of given ID.\"\n" +
     "    put:\n" +
     "      consumes:\n" +
     "        - 'application/json'\n" +
@@ -78,7 +98,10 @@ export class ApiDefinitionTextAreaComponent implements OnInit, OnDestroy {
     "            schema: JSON Schema 2019-09\n" +
     "            examples:\n" +
     "              - description: Example of turning the lamp on by JSON request.\n" +
-    "                value: \"{state: 1}\"\n" +
+    "                value: |\n" +
+    "                  {\n" +
+    "                   \"state\": 1\n" +
+    "                  }\n" +
     "          - format: \"text/plain;\"\n" +
     "            examples:\n" +
     "              - description: Example of turning the lamp off by YAML request.\n" +
@@ -88,10 +111,13 @@ export class ApiDefinitionTextAreaComponent implements OnInit, OnDestroy {
     "        - code: default\n" +
     "          description: A default response.\n" +
     "          content:\n" +
-    "            - format: \"application/json\"\n" +
+    "            - format: \"application/xml\"\n" +
     "              schema: JSON Schema 2019-09\n" +
     "              examples:\n" +
-    "                - value: \"{state: 1}\"\n" +
+    "                - value: |\n" +
+    "                    <xml>\n" +
+    "                     <state> 1 </state>\n" +
+    "                    </xml>\n" +
     "        - code: \"4.04\"\n" +
     "          description: Not found.\n" +
     "          content:\n" +
@@ -103,6 +129,7 @@ export class ApiDefinitionTextAreaComponent implements OnInit, OnDestroy {
     "      description: Removes given lamp from an API.";
 
   ngOnInit() {
+    this.generateUuid();
   }
 
   ngOnDestroy() {
@@ -112,8 +139,8 @@ export class ApiDefinitionTextAreaComponent implements OnInit, OnDestroy {
     this.store.dispatch(parseSpecification({specification: yamlSpecification}));
   }
 
-  generateUuid(): string {
-    return uuidv4();
+  generateUuid(): void {
+    this.redirectUuid = uuidv4();
   }
 }
 

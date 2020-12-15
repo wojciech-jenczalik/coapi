@@ -4,9 +4,9 @@
       <pre>
         <code class="specificationField" contenteditable="true" #specificationInput [highlight]="mock"></code>
           <button type="button" class="btn btn-primary float-right submitButton"
-                  (click)="submitSpec(specificationInput.innerText)"
+                  (click)="submitSpec(specificationInput.innerText); generateUuid()"
                   routerLinkActive="current-selection"
-                  routerLink="/documentation/{{generateUuid()}}">Submit
+                  routerLink="/documentation/{{redirectUuid}}">Submit
           </button>
       </pre>
     </form>
