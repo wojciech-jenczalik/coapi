@@ -12,12 +12,16 @@ import { SpecificationEffects } from './state/specification.effects';
 import { ApiGraphicalDocumentationComponent } from './components/api-graphical-documentation/api-graphical-documentation.component';
 import {reducers} from './specification.reducers';
 import {HIGHLIGHT_OPTIONS, HighlightModule} from 'ngx-highlightjs';
+import {ApiErrorComponent} from './components/api-error/api-error.component';
+import {ApiValidComponent} from './components/api-valid/api-valid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ApiDefinitionTextAreaComponent,
-    ApiGraphicalDocumentationComponent
+    ApiGraphicalDocumentationComponent,
+    ApiErrorComponent,
+    ApiValidComponent
   ],
   imports: [
     BrowserModule,

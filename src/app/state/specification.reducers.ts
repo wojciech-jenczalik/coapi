@@ -9,6 +9,18 @@ const specificationReducer = createReducer(
       ...state,
       coapi: action.coapi
     };
+  }),
+  on(SpecificationActions.errorOccured, (state, action) => {
+    return {
+      ...state,
+      error: action.error
+    };
+  }),
+  on(SpecificationActions.noError, (state) => {
+    return {
+      ...state,
+      error: null
+    };
   })
 );
 

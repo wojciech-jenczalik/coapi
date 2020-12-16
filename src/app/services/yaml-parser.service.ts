@@ -1,18 +1,20 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Coapi} from '../model/coapi';
 import * as YAML from 'yaml';
-import {CoapiValidationService} from './coapi-validation.service';
+import {CoapiError} from '../model/coapi-error';
 
 @Injectable({
   providedIn: 'root'
 })
 export class YamlParserService {
 
-  constructor(private readonly validator: CoapiValidationService) { }
+  constructor() { }
 
   parseYamlSpec(yamlSpec: string): Coapi {
-    const coapi = YAML.parse(yamlSpec);
-    this.validator.validate(coapi);
-    return coapi;
+    try{
+      return YAML.parse(yamlSpec);
+    } catch (e) {
+      throw new CoapiError('Error while parsing YAML', e, []);
+    }
   }
 }

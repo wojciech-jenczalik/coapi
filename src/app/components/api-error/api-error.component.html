@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <ng-container *ngIf="(error$ | async)">
+  <div class="row col-12 error-container">
+    <div class="row col-12 error-header-container p-3">
+      Errors
+    </div>
+    <div class="row col-12 error-body-container p-3">
+      <div class="error-main-description">
+        {{(error$ | async).message}}
+      </div>
+      <div class="error-detailed-description">
+        {{(error$ | async).detailedMessage}}
+      </div>
+      <div class="error-object" *ngFor="let err of (error$ | async).errorObjects">
+        <div class="table row error-table">
+          <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">
+              dataPath
+            </th>
+            <td>
+              {{err.dataPath}}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              keyword
+            </th>
+            <td>
+              {{err.keyword}}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              message
+            </th>
+            <td>
+              {{err.message}}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              params
+            </th>
+            <td>
+              <div>
+                {{err.params | json}}
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </div>
+      </div>
+    </div>
+  </div>
+  </ng-container>
+</div>

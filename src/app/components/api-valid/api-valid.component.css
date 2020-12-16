@@ -1,0 +1,12 @@
+.no-error-container {
+  overflow: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  margin-top: 4px;
+  border-radius: 5px;
+  border: 1px solid;
+  font-size: larger;
+  font-weight: bold;
+  background-color: #49CC901A;
+  border-color: #49CC90;
+}

@@ -1,16 +1,20 @@
 import {Injectable} from '@angular/core';
 import {Coapi} from '../model/coapi';
-import Ajv, {DefinedError} from 'ajv';
+import Ajv, {ValidateFunction} from 'ajv';
+import {CoapiError} from '../model/coapi-error';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoapiValidationService {
   ajv = new Ajv();
-  validator = this.ajv.compile(schema);
+  validator: ValidateFunction = this.ajv.compile(schema);
 
   validate(coapi: Coapi): void {
-    console.log(this.validator(coapi));
+    const valid = this.validator(coapi);
+    if (!valid) {
+      throw new CoapiError('Error while validating schema.', '', this.validator.errors);
+    }
   }
 }
 

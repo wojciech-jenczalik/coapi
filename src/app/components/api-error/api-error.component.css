@@ -1,0 +1,42 @@
+.error-container {
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+.error-header-container {
+  padding: 10px;
+  margin-top: 4px;
+
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: #F93E3E1A;
+  border: 1px solid #F93E3E;
+
+  font-size: large;
+  font-weight: bold;
+}
+
+.error-body-container {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: #F93E3E1A;
+  border: 1px solid #F93E3E;
+}
+
+.error-main-description {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.error-detailed-description {
+  margin-top: 4px;
+  font-weight: bold;
+}
+
+.error-object {
+  margin-top: 4px;
+}
+
+.error-table {
+  margin-top: 4px;
+}

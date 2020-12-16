@@ -1,14 +1,23 @@
-.specificationField {
+.specification-field {
   position: relative;
   min-height: 100vh;
   max-height: 100vh;
 }
 
-.specificationForm {
+.specification-form {
   white-space: pre;
 }
 
-.submitButton {
+.validate-button {
+  background-color: green;
+  position: absolute;
+  top: 25px;
+  right: 180px;
+  max-height: 40px;
+  text-align: center;
+}
+
+.submit-button {
   position: absolute;
   top: 25px;
   right: 50px;
