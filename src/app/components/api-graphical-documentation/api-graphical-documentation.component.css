@@ -67,6 +67,17 @@
   font-style: italic;
 }
 
+.method-additional-info-header {
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid;
+}
+
+.method-additional-info-container {
+  text-align: left;
+  border: 1px solid;
+}
+
 .method-payload-header {
   text-align: center;
   font-weight: bold;

@@ -52,7 +52,6 @@ export class ApiDefinitionTextAreaComponent implements OnInit, OnDestroy {
       }
       return true;
     } catch (e) {
-      debugger;
       this.store.dispatch(errorOccured({error: e}));
       this.router.navigate(['validation/error/' + this.redirectUuid]);
     }

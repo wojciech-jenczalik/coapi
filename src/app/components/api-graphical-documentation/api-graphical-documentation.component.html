@@ -42,6 +42,34 @@
               </tbody>
             </div>
           </div>
+          <div class="row col-12 method-additional-info-header p-3" style="border-color: #61AFFE">
+            Coap specific parameters
+          </div>
+          <div class="row col-12 method-additional-info-container"
+               style="background-color: #61AFFE1A; border-color: #61AFFE">
+            <div class="table">
+              <thead>
+              <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Value</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">
+                  Supports ETag
+                </th>
+                <td>{{path.get.etag}}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Observable
+                </th>
+                <td>{{path.get.observable}}</td>
+              </tr>
+              </tbody>
+            </div>
+          </div>
         </ng-container>
         <ng-container *ngIf="path.get.responses != null && path.get.responses.length > 0">
           <div class="row col-12 method-responses-header p-3" style="border-color: #61AFFE">
